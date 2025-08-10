@@ -24,7 +24,12 @@ import tests.test_graph_utils
 # FUNCTIONS
 # -----------------------------------------------------------------------------
 def main():
-    pass
+    graph_dict = {
+        "A": []
+    }
+
+    # print( graph_dict["A"] )
+    print( graph_dict )
 
 if __name__ == '__main__':
     main()
