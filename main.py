@@ -5,6 +5,7 @@
 # Imports
 # -----------------------------------------------------------------------------
 import tests.test_graph_utils
+import sys
 
 # -----------------------------------------------------------------------------
 # GLOBALS
@@ -25,11 +26,13 @@ import tests.test_graph_utils
 # -----------------------------------------------------------------------------
 def main():
     graph_dict = {
-        "A": []
+        "A": ["B"]
     }
 
     # print( graph_dict["A"] )
-    print( graph_dict )
+    print( graph_dict.get("A", [])[0] )
+
+    # print(sys.path)
 
 if __name__ == '__main__':
     main()
