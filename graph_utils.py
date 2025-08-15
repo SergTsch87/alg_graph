@@ -20,11 +20,11 @@ def bfs(graph_dict, start_vertex):
     # print(queue_fifo)
     # print(queue_fifo[-1])
 
-    start_vertex = queue_fifo[-1]
-    last_el = queue_fifo.pop()
-    visited_nodes.append(last_el)
+    # start_vertex = queue_fifo[-1]
+    # last_el = queue_fifo.pop()
+    # visited_nodes.append(last_el)
 
-    if queue_fifo:
+    while queue_fifo:
         start_vertex = queue_fifo[-1]
         last_el = queue_fifo.pop()
         visited_nodes.append(last_el)
@@ -33,9 +33,9 @@ def bfs(graph_dict, start_vertex):
         # start_vertex == "C"
         # queue_fifo == []
         # visited_nodes == [ABC]
-    print(start_vertex)
-    print(queue_fifo)
-    print(visited_nodes)
+    # print(start_vertex)
+    # print(queue_fifo)
+    # print(visited_nodes)
 
     return visited_nodes
 
