@@ -19,5 +19,15 @@ def test_two_nodes_edge():
     assert bfs(graph_dict, "A") == ["A", "B"]
 
 
+def test_three_nodes_edges():
+    graph_dict = {
+        "A": ["B"],
+        "B": ["A"],
+        "C": ["A"]
+    }
+
+    assert bfs(graph_dict, "A") == ["A", "B", "C"]
+
+
 if __name__ == '__main__':
     pytest.main()
