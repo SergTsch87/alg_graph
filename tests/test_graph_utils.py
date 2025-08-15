@@ -39,5 +39,18 @@ def test_three_nodes_two_siblings_from_root():
     assert bfs(graph_dict, "A") == ["A", "B", "C"]
 
 
+def test_branching_deeper_from_C():
+    graph_dict = {
+        "A": ["B", "C"],
+        "B": ["A"],
+        "C": ["A", "D", "E", "F"],
+        "D": ["C"],
+        "E": ["C"],
+        "F": ["C"]
+    }
+
+    assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
+
+
 if __name__ == '__main__':
     pytest.main()
