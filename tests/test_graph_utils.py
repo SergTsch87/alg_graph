@@ -65,5 +65,12 @@ def test_full_graph():
     assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
 
 
+# Додаткові тести
+def test_missing_node():
+    graph_dict = {}
+
+    assert bfs(graph_dict, "A") == []
+
+
 if __name__ == '__main__':
     pytest.main()
