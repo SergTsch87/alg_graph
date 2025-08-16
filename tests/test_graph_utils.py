@@ -72,5 +72,21 @@ def test_missing_node():
     assert bfs(graph_dict, "A") == []
 
 
+def test_cyclic_graph():
+    graph_dict = {
+        "A": ["B"],
+        "B": ["C"],
+        "C": ["A"]
+        # "A": ["B", "C"],
+        # "B": ["C", "A"],
+        # "C": ["A", "B"]
+    }
+
+    assert bfs(graph_dict, "A") == ["A", "B", "C"]
+# tests\test_graph_utils.py:82: AssertionError
+# ============================================================= short test summary info ==============================================================
+# FAILED tests/test_graph_utils.py::test_cyclic_graph - AssertionError: assert ['A', 'C', 'B'] == ['A', 'B', 'C']
+
+
 if __name__ == '__main__':
     pytest.main()

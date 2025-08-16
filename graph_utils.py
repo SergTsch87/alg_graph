@@ -19,7 +19,7 @@ def bfs(graph_dict, start_vertex):
 
     while queue_fifo:
         current_vertex = queue_fifo.pop(0)
-        neighbors_list = get_list_childs(current_vertex, graph_dict)
+        neighbors_list = get_list_childs(current_vertex, graph_dict) #  graph_dict[current_vertex]
         for item in neighbors_list:
             if item not in visited_nodes:
                 queue_fifo.append(item)
