@@ -22,6 +22,12 @@ def bfs(graph_dict, start_vertex):
     current_vertex = queue_fifo.pop(0)
     neighbors_list = get_list_childs(current_vertex, graph_dict)
 
+    while queue_fifo:
+        queue_fifo.extend(neighbors_list)
+        visited_nodes.extend(neighbors_list)
+        current_vertex = queue_fifo.pop(0)
+        neighbors_list = get_list_childs(current_vertex, graph_dict)
+
     # visited_nodes = [start_vertex]
     # queue_fifo = get_list_childs(start_vertex, graph_dict)
     # queue_fifo.reverse()
