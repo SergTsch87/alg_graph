@@ -52,5 +52,18 @@ def test_branching_deeper_from_C():
     assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
 
 
+def test_full_graph():
+    graph_dict = {
+        "A": ["B", "C", "D", "E", "F"],
+        "B": ["A", "C", "D", "E", "F"],
+        "C": ["A", "B", "D", "E", "F"],
+        "D": ["A", "B", "C", "E", "F"],
+        "E": ["A", "B", "C", "D", "F"],
+        "F": ["A", "B", "C", "D", "E"]
+    }
+
+    assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
+
+
 if __name__ == '__main__':
     pytest.main()
