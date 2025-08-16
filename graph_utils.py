@@ -13,13 +13,25 @@ def bfs(graph_dict, start_vertex):
     if len(graph_dict) <= 1:
         if start_vertex in graph_dict:
             return [start_vertex]
-    
-    visited_nodes = [start_vertex]
-    queue_fifo = get_list_childs(start_vertex, graph_dict)
-    queue_fifo.reverse()
 
-    while queue_fifo:
-        start_vertex = queue_fifo.pop()
-        visited_nodes.append(start_vertex)
+    queue_fifo = []
+    visited_nodes = []
+
+    queue_fifo = [start_vertex]
+    visited_nodes = [start_vertex]
+    current_vertex = queue_fifo.pop(0)
+    neighbors_list = get_list_childs(current_vertex, graph_dict)
+
+    # visited_nodes = [start_vertex]
+    # queue_fifo = get_list_childs(start_vertex, graph_dict)
+    # queue_fifo.reverse()
+
+    # while queue_fifo:
+    #     start_vertex = queue_fifo.pop()
+    #     visited_nodes.append(start_vertex)
+        
+    #     temp_queue_fifo = get_list_childs(start_vertex, graph_dict)
+    #     temp_queue_fifo.reverse()
+    #     queue_fifo.append(temp_queue_fifo)
 
     return visited_nodes
