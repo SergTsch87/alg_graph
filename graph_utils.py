@@ -14,13 +14,13 @@ def bfs(graph_dict, start_vertex):
         if start_vertex in graph_dict:
             return [start_vertex]
 
-    queue_fifo = []
-    visited_nodes = []
+    # queue_fifo = []
+    # visited_nodes = []
 
     queue_fifo = [start_vertex]
     visited_nodes = [start_vertex]
-    current_vertex = queue_fifo.pop(0)
-    neighbors_list = get_list_childs(current_vertex, graph_dict)
+    # current_vertex = queue_fifo.pop(0)
+    # neighbors_list = get_list_childs(current_vertex, graph_dict)
 
     while queue_fifo:
         current_vertex = queue_fifo.pop(0)
