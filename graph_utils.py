@@ -23,10 +23,15 @@ def bfs(graph_dict, start_vertex):
     neighbors_list = get_list_childs(current_vertex, graph_dict)
 
     while queue_fifo:
-        queue_fifo.extend(neighbors_list)
-        visited_nodes.extend(neighbors_list)
         current_vertex = queue_fifo.pop(0)
+        # queue_fifo.extend(neighbors_list)
+        # visited_nodes.extend(neighbors_list)
         neighbors_list = get_list_childs(current_vertex, graph_dict)
+        for item in neighbors_list:
+            if item not in visited_nodes:
+                queue_fifo.append(item)
+                visited_nodes.append(item)
+        
 
     # visited_nodes = [start_vertex]
     # queue_fifo = get_list_childs(start_vertex, graph_dict)
