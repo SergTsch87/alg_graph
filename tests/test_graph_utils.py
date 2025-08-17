@@ -164,8 +164,17 @@ def test_start_from_empty_node():
         "B": ["A"]
     }
 
-    # assert bfs(graph_dict, "C") == ["A", "B", "C"]
-    assert bfs(graph_dict, "C") == []
+    # assert bfs(graph_dict, "C") == ["A", "B", "C"] # -> Red
+    assert bfs(graph_dict, "C") == [] # -> Green
+
+
+def test_graph_with_duplicate_edges():
+    graph_dict = {
+        "A": ["B", "B"],
+        "B": ["A"]
+    }
+
+    assert bfs(graph_dict, "A") == ["A", "B"]
 
 
 if __name__ == '__main__':
