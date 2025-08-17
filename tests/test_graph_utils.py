@@ -106,5 +106,18 @@ def test_graph_with_isolate_vertex():
     assert bfs(graph_dict, "A") == ["A", "B"]
 
 
+def test_unconnected_graph():
+    graph_dict = {
+        "A": ["B", "C"],
+        "B": ["A", "C"],
+        "C": ["A", "B"],
+        "D": ["E", "F"],
+        "E": ["D", "F"],
+        "F": ["D", "E"]
+    }
+
+    assert bfs(graph_dict, "A") == ["A", "B", "C"]
+
+
 if __name__ == '__main__':
     pytest.main()
