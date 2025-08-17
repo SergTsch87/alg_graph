@@ -10,9 +10,10 @@ def bfs(graph_dict, start_vertex):
     if start_vertex not in graph_dict:
         return []
     
-    if len(graph_dict) <= 1:
-        if start_vertex in graph_dict:
-            return [start_vertex]
+    # Ця умова зайва, бо без неї виконується 12 тестів!)
+    # if len(graph_dict) <= 1:
+    #     if start_vertex in graph_dict:
+    #         return [start_vertex]
 
     queue_fifo = [start_vertex]
     visited_nodes = [start_vertex]

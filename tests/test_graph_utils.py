@@ -119,5 +119,14 @@ def test_unconnected_graph():
     assert bfs(graph_dict, "A") == ["A", "B", "C"]
 
 
+def test_direct_graph():
+    graph_dict = {
+        # "A": ["B"],
+        "B": []
+    }
+
+    assert bfs(graph_dict, "B") == ["B"]
+
+
 if __name__ == '__main__':
     pytest.main()
