@@ -96,5 +96,15 @@ def test_star_graph():
     assert bfs(graph_dict, "A") == ["A", "B", "C", "D"]
 
 
+def test_graph_with_isolate_vertex():
+    graph_dict = {
+        "A": ["B"],
+        "B": ["A"],
+        "C": []
+    }
+
+    assert bfs(graph_dict, "A") == ["A", "B"]
+
+
 if __name__ == '__main__':
     pytest.main()
