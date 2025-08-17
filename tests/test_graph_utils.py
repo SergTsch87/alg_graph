@@ -158,5 +158,14 @@ def test_graph_with_many_children():
     assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"]
 
 
+def test_start_from_empty_node():
+    graph_dict = {
+        "A": ["B"],
+        "B": ["A"]
+    }
+
+    assert bfs(graph_dict, "C") == ["A", "B", "C"]
+
+
 if __name__ == '__main__':
     pytest.main()
