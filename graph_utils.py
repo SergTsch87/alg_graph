@@ -1,3 +1,4 @@
+# Повертає список батьків вершини vertex_parent
 def get_list_parents(vertex_parent, graph_dict):
     nodes_list = []
     for node, child in graph_dict.items():
@@ -15,7 +16,7 @@ def bfs(graph_dict, start_vertex):
 
     while queue_fifo:
         current_vertex = queue_fifo.pop(0)
-        if graph_dict[current_vertex] != []:
+        if graph_dict[current_vertex] != []: # to check a directed graph
             neighbors_list = get_list_parents(current_vertex, graph_dict)
             for item in neighbors_list:
                 if item not in visited_nodes:

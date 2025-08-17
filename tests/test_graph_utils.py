@@ -128,5 +128,35 @@ def test_direct_graph():
     assert bfs(graph_dict, "B") == ["B"]
 
 
+def test_loop_graph():
+    graph_dict = {
+        "A": ["A"]
+    }
+
+    assert bfs(graph_dict, "A") == ["A"]
+
+
+def test_graph_with_many_children():
+    graph_dict = {
+        "A": ["B", "C"],
+        "B": ["A"],
+        "C": ["A", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"],
+        "D": ["C"],
+        "E": ["C"],
+        "F": ["C"],
+        "G": ["C"],
+        "H": ["C"],
+        "K": ["C"],
+        "L": ["C"],
+        "M": ["C"],
+        "N": ["C"],
+        "O": ["C"],
+        "P": ["C"],
+        "Q": ["C"]
+    }
+
+    assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"]
+
+
 if __name__ == '__main__':
     pytest.main()
