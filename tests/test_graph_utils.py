@@ -121,7 +121,7 @@ def test_unconnected_graph():
 
 def test_direct_graph():
     graph_dict = {
-        # "A": ["B"],
+        "A": ["B"],
         "B": []
     }
 
