@@ -21,7 +21,7 @@ def test_two_nodes_edge():
 
 def test_three_nodes_edges():
     graph_dict = {
-        "A": ["B"],
+        "A": ["B", "C"],
         "B": ["A"],
         "C": ["A"]
     }

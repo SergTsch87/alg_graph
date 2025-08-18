@@ -37,12 +37,11 @@ def bfs(graph_dict, start_vertex):
     
     queue_fifo = deque([start_vertex])
     visited_nodes = [start_vertex]
-    # queue = deque()
-
+    
     while queue_fifo:
         current_vertex = queue_fifo.popleft() # fst
         if graph_dict[current_vertex] != []: # to check a directed graph
-            neighbors_list = get_list_parents(current_vertex, graph_dict)
+            neighbors_list = graph_dict.get(current_vertex, [])
             for item in neighbors_list:
                 if item not in visited_nodes:
                     queue_fifo.append(item)
