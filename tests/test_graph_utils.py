@@ -21,8 +21,8 @@ def test_two_nodes_edge():
 
 def test_three_nodes_edges():
     graph_dict = {
-        "A": ["B", "C"],
-        "B": ["A"],
+        "A": ["B"],
+        "B": ["C"],
         "C": ["A"]
     }
 
@@ -175,6 +175,15 @@ def test_graph_with_duplicate_edges():
     }
 
     assert bfs(graph_dict, "A") == ["A", "B"]
+
+
+def test_isolated_vertex():
+    graph_dict = {
+        "A": [],
+        "B": []
+    }
+
+    assert bfs(graph_dict, "A") == ["A"]
 
 
 if __name__ == '__main__':
