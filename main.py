@@ -6,6 +6,8 @@
 # -----------------------------------------------------------------------------
 import tests.test_graph_utils
 import sys
+from collections import deque
+import time
 
 # -----------------------------------------------------------------------------
 # GLOBALS
@@ -24,43 +26,71 @@ import sys
 # -----------------------------------------------------------------------------
 # FUNCTIONS
 # -----------------------------------------------------------------------------
+
+def timer(func):
+    def wrapper(*args, **kwargs):
+        start_time = time.time()
+        result = func(*args, **kwargs)
+        end_time = time.time()
+        execution_time = end_time - start_time
+        print(f"Функція {func.__name__} виконалася за {execution_time} секунд")
+        return result
+    return wrapper
+
+
 def get_list_childs(vertex_parent, graph_dict):
     nodes_list = []
     for node, child in graph_dict.items():
         if vertex_parent in child:
             nodes_list.append(node)
     return nodes_list
-        
+
+
+@timer
+def change_iterable(iter_obj, change_method):
+    for i in list(iter_obj): # робимо копію, щоб не ламати ітерацію
+        change_method(i)
+    print(f'len == {len(iter_obj)}')
+
 
 def main():
-    graph_dict = {
-        "A": ["B"],
-        "B": ["A"],
-        "C": ["A"]
-    }
+    list_1 = [i for i in range(10)]
 
-    # list_node = get_list_childs("A", graph_dict)
-    # print(list_node)
+    quque_2 = deque( range(10) )
+    
+    change_iterable(list_1, list_1.append)
+    change_iterable(quque_2, quque_2.append)
+    change_iterable(list_1, list_1.remove)
+    change_iterable(quque_2, lambda _: quque_2.popleft())
 
-    # queue_fifo = get_list_childs("A", graph_dict).reverse()
-    queue_fifo = get_list_childs("A", graph_dict)
-    queue_fifo.reverse()
-    print(queue_fifo)
-    print(queue_fifo[-1])
-
-    # my_list = [2, 4, 1]
-    # while my_list:
-    #     print(my_list)
-    #     my_list.pop()
-    # print([2, 4, 1][-1])
     # graph_dict = {
-    #     "A": ["B"]
+    #     "A": ["B"],
+    #     "B": ["A"],
+    #     "C": ["A"]
     # }
 
-    # # print( graph_dict["A"] )
-    # print( graph_dict.get("A", [])[0] )
+    # # list_node = get_list_childs("A", graph_dict)
+    # # print(list_node)
 
-    # # print(sys.path)
+    # # queue_fifo = get_list_childs("A", graph_dict).reverse()
+    # queue_fifo = get_list_childs("A", graph_dict)
+    # queue_fifo.reverse()
+    # print(queue_fifo)
+    # print(queue_fifo[-1])
+
+    # # my_list = [2, 4, 1]
+    # # while my_list:
+    # #     print(my_list)
+    # #     my_list.pop()
+    # # print([2, 4, 1][-1])
+    # # graph_dict = {
+    # #     "A": ["B"]
+    # # }
+
+    # # # print( graph_dict["A"] )
+    # # print( graph_dict.get("A", [])[0] )
+
+    # # # print(sys.path)
 
 if __name__ == '__main__':
     main()
