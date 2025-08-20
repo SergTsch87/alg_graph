@@ -11,13 +11,14 @@ def test_single_node():
     assert dfs(graph_dict, "A") == ["A"]
 
 
-# def test_two_nodes_edge():
-#     graph_dict = {
-#         "A": ["B"],
-#         "B": ["A"]
-#     }
+def test_two_nodes_edge():
+    graph_dict = {
+        "A": ["B"],
+        "B": ["A"]
+    }
 
-#     assert bfs(graph_dict, "A") == ["A", "B"]
+    # assert bfs(graph_dict, "A") == ["A", "B"]
+    assert dfs(graph_dict, "A") == ["A", "B"]
 
 
 # def test_three_nodes_edges():
