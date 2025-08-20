@@ -56,5 +56,4 @@ def bfs(graph_dict, start_vertex):
 
 
 def dfs(graph_dict, start_vertex):
-    pass
-    # return [start_vertex]
+    return [start_vertex]
