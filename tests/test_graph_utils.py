@@ -21,14 +21,15 @@ def test_two_nodes_edge():
     assert dfs(graph_dict, "A") == ["A", "B"]
 
 
-# def test_three_nodes_edges():
-#     graph_dict = {
-#         "A": ["B"],
-#         "B": ["C"],
-#         "C": ["A"]
-#     }
+def test_three_nodes_edges():
+    graph_dict = {
+        "A": ["B"],
+        "B": ["C"],
+        "C": ["A"]
+    }
 
 #     assert bfs(graph_dict, "A") == ["A", "B", "C"]
+    assert dfs(graph_dict, "A") == ["A", "B", "C"]
 
 
 # def test_three_nodes_two_siblings_from_root():
