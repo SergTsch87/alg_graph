@@ -1,4 +1,5 @@
 from collections import deque
+# from main import timer
 
 
 # # Повертає список батьків вершини vertex_parent
@@ -11,6 +12,8 @@ from collections import deque
 
 
 # # bfs without addition modules
+# # @timer
+# # def bfs_list(graph_dict, start_vertex):
 # def bfs(graph_dict, start_vertex):
 #     if start_vertex not in graph_dict:
 #         return []
@@ -30,7 +33,9 @@ from collections import deque
 #     return visited_nodes
 
 
+
 # bfs with deque module
+# def bfs_deque(graph_dict, start_vertex):
 def bfs(graph_dict, start_vertex):
     if start_vertex not in graph_dict:
         return []
@@ -44,7 +49,12 @@ def bfs(graph_dict, start_vertex):
             neighbors_list = graph_dict.get(current_vertex, [])  # graph_dict{ current_vertex: neighbors_list }
             for nei in neighbors_list:
                 if nei not in visited_nodes:
-                    queue_fifo.append(nei)
+                    queue_fifo.append(nei) # А чи можна у цій частині тимчасово зробити list(queue_fifo) ? - бо до списку додається швидше, аніж до черги
                     visited_nodes.append(nei)
 
     return visited_nodes
+
+
+def dfs(graph_dict, start_vertex):
+    pass
+    # return [start_vertex]

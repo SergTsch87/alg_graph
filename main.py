@@ -50,18 +50,50 @@ def get_list_childs(vertex_parent, graph_dict):
 def change_iterable(iter_obj, change_method):
     for i in list(iter_obj): # робимо копію, щоб не ламати ітерацію
         change_method(i)
-    print(f'len == {len(iter_obj)}')
+    print(f'len == {len(iter_obj)},  type(iter_obj) == {type(iter_obj)}')
 
 
 def main():
-    list_1 = [i for i in range(10)]
 
-    quque_2 = deque( range(10) )
+    list_of_graph_dicts = [
+        {"A": []},
+        {"A": ["B"],"B": ["A"]},
+        {"A": ["B"],"B": ["C"],"C": ["A"]},
+        {"A": ["B", "C"],"B": ["A"],"C": ["A"]},
+        {"A": ["B", "C"],"B": ["A"],"C": ["A", "D", "E", "F"],"D": ["C"],"E": ["C"],"F": ["C"]},
+        {"A": ["B", "C", "D", "E", "F"],"B": ["A", "C", "D", "E", "F"],"C": ["A", "B", "D", "E", "F"],"D": ["A", "B", "C", "E", "F"],"E": ["A", "B", "C", "D", "F"],"F": ["A", "B", "C", "D", "E"]},
+        {},
+        {"A": ["B", "C"],"B": ["C", "A"],"C": ["A", "B"]},
+        {"A": ["B", "C", "D"],"B": ["A"],"C": ["A"],"D": ["A"]},
+        {"A": ["B"],"B": ["A"],"C": []},
+        {"A": ["B", "C"],"B": ["A", "C"],"C": ["A", "B"],"D": ["E", "F"],"E": ["D", "F"],"F": ["D", "E"]},
+        {"A": ["B"],"B": []},
+        {"A": ["A"]},
+        {"A": ["B", "C"],"B": ["A"],"C": ["A", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"],"D": ["C"],"E": ["C"],"F": ["C"],"G": ["C"],"H": ["C"],"K": ["C"],"L": ["C"],"M": ["C"],"N": ["C"],"O": ["C"],"P": ["C"],"Q": ["C"]},
+        {"A": ["B"],"B": ["A"]},
+        {"A": ["B", "B"],"B": ["A"]},
+        {"A": [],"B": []}
+    ]
+
+    # len_for_iter_objs = 100000
+    # list_1 = [i for i in range(len_for_iter_objs)]
+    # quque_2 = deque( range(len_for_iter_objs) )
     
-    change_iterable(list_1, list_1.append)
-    change_iterable(quque_2, quque_2.append)
-    change_iterable(list_1, list_1.remove)
-    change_iterable(quque_2, lambda _: quque_2.popleft())
+    # change_iterable(list_1, list_1.append)
+    # change_iterable(list_1, list_1.remove)
+    # print('\n')
+    # change_iterable(quque_2, quque_2.append)
+    # change_iterable(quque_2, lambda _: quque_2.popleft())
+
+
+    # len_for_iter_objs = 100000
+    # list_1 = [i for i in range(len_for_iter_objs)]
+    
+    # change_iterable(list_1, list_1.append)
+    # print('\n')
+    # quque_2 = deque(list_1)
+    # change_iterable(quque_2, lambda _: quque_2.popleft())
+
 
     # graph_dict = {
     #     "A": ["B"],
