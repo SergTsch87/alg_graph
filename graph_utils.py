@@ -56,4 +56,14 @@ def bfs(graph_dict, start_vertex):
 
 
 def dfs(graph_dict, start_vertex):
-    return [start_vertex]
+    visited_nodes = []
+    visited_nodes.append(start_vertex)
+    
+    if len(graph_dict) > 1:
+        curr_vertex = graph_dict[start_vertex][0]
+        visited_nodes.append(curr_vertex)
+    
+    return visited_nodes
+
+# "A": ["B"],
+# "B": ["A"]
