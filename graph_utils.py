@@ -56,14 +56,21 @@ def bfs(graph_dict, start_vertex):
 
 
 def dfs(graph_dict, start_vertex):
+    if start_vertex not in graph_dict:
+        return []
+    
+    queue_lifo = deque([ start_vertex ])
     visited_nodes = []
-    visited_nodes.append(start_vertex)
-    
-    if len(graph_dict) > 1:
-        curr_vertex = graph_dict[start_vertex][0]
-        visited_nodes.append(curr_vertex)
-    
+
+    while queue_lifo:
+        current_vertex = queue_lifo.pop()
+        if current_vertex not in visited_nodes:
+            visited_nodes.append(current_vertex)
+            neighbors = graph_dict[current_vertex]
+            queue_lifo.extend(reversed(neighbors))
+
     return visited_nodes
 
 # "A": ["B"],
-# "B": ["A"]
+# "B": ["C"],
+# "C": ["A"]

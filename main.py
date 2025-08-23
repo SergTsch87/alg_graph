@@ -8,6 +8,7 @@ import tests.test_graph_utils
 import sys
 from collections import deque
 import time
+from graph_utils import dfs
 
 # -----------------------------------------------------------------------------
 # GLOBALS
@@ -54,6 +55,21 @@ def change_iterable(iter_obj, change_method):
 
 
 def main():
+
+    # graph_dict = {
+    #     "A": ["B"],
+    #     "B": ["A"]
+    # }
+
+    graph_dict = {
+        "A": ["B", "C"],
+        "B": ["A"],
+        "C": ["A", "D"],
+        "D": ["C"]
+    }
+
+    visited_nodes = dfs(graph_dict, "A")
+    print(f'visited_nodes == {visited_nodes}')
 
     list_of_graph_dicts = [
         {"A": []},
