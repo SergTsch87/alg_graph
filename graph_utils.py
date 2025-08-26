@@ -3,12 +3,13 @@ from collections import deque
 
 
 # bfs with deque module
-def bfs(graph_dict, start_vertex):
+def bfs(graph_dict, start_vertex):#, parents):
     if start_vertex not in graph_dict:
-        return []
+        return []#, []
     
     queue_fifo = deque([start_vertex])
     visited_nodes = [start_vertex]
+    # parents = []
 
     while queue_fifo:
         current_vertex = queue_fifo.popleft() # fst
@@ -19,7 +20,7 @@ def bfs(graph_dict, start_vertex):
                     queue_fifo.append(nei) # А чи можна у цій частині тимчасово зробити list(queue_fifo) ? - бо до списку додається швидше, аніж до черги
                     visited_nodes.append(nei)
 
-    return visited_nodes
+    return visited_nodes#, parents
 
 
 def dfs(graph_dict, start_vertex):
