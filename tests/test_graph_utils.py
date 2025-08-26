@@ -1,5 +1,5 @@
 import pytest
-from graph_utils import dfs#, bfs
+from graph_utils import bfs#, dfs
 
 
 def test_single_node():
@@ -7,8 +7,8 @@ def test_single_node():
         "A": []
     }
 
-    # assert bfs(graph_dict, "A") == ["A"]
-    assert dfs(graph_dict, "A") == ["A"]
+    assert bfs(graph_dict, "A") == ["A"]
+    # assert dfs(graph_dict, "A") == ["A"]
 
 
 def test_two_nodes_edge():
@@ -17,8 +17,8 @@ def test_two_nodes_edge():
         "B": ["A"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B"]
-    assert dfs(graph_dict, "A") == ["A", "B"]
+    assert bfs(graph_dict, "A") == ["A", "B"]
+    # assert dfs(graph_dict, "A") == ["A", "B"]
 
 
 def test_three_nodes_edges():
@@ -28,8 +28,8 @@ def test_three_nodes_edges():
         "C": ["A"]
     }
 
-#     assert bfs(graph_dict, "A") == ["A", "B", "C"]
-    assert dfs(graph_dict, "A") == ["A", "B", "C"]
+    assert bfs(graph_dict, "A") == ["A", "B", "C"]
+    # assert dfs(graph_dict, "A") == ["A", "B", "C"]
 
 
 def test_three_nodes_two_siblings_from_root():
@@ -39,8 +39,8 @@ def test_three_nodes_two_siblings_from_root():
         "C": ["A"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B", "C"]
-    assert dfs(graph_dict, "A") == ["A", "B", "C"]
+    assert bfs(graph_dict, "A") == ["A", "B", "C"]
+    # assert dfs(graph_dict, "A") == ["A", "B", "C"]
 
 
 def test_branching_deeper_from_C():
@@ -53,8 +53,8 @@ def test_branching_deeper_from_C():
         "F": ["C"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
-    assert dfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
+    assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
+    # assert dfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
 
 
 def test_full_graph():
@@ -67,16 +67,16 @@ def test_full_graph():
         "F": ["A", "B", "C", "D", "E"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
-    assert dfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
+    assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
+    # assert dfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F"]
 
 
 # Додаткові тести
 def test_missing_node():
     graph_dict = {}
 
-    # assert bfs(graph_dict, "A") == []
-    assert dfs(graph_dict, "A") == []
+    assert bfs(graph_dict, "A") == []
+    # assert dfs(graph_dict, "A") == []
 
 
 def test_cyclic_graph():
@@ -89,8 +89,8 @@ def test_cyclic_graph():
         "C": ["A", "B"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B", "C"]
-    assert dfs(graph_dict, "A") == ["A", "B", "C"]
+    assert bfs(graph_dict, "A") == ["A", "B", "C"]
+    # assert dfs(graph_dict, "A") == ["A", "B", "C"]
 
 
 def test_star_graph():
@@ -101,8 +101,8 @@ def test_star_graph():
         "D": ["A"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B", "C", "D"]
-    assert dfs(graph_dict, "A") == ["A", "B", "C", "D"]
+    assert bfs(graph_dict, "A") == ["A", "B", "C", "D"]
+    # assert dfs(graph_dict, "A") == ["A", "B", "C", "D"]
 
 
 def test_graph_with_isolate_vertex():
@@ -112,8 +112,8 @@ def test_graph_with_isolate_vertex():
         "C": []
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B"]
-    assert dfs(graph_dict, "A") == ["A", "B"]
+    assert bfs(graph_dict, "A") == ["A", "B"]
+    # assert dfs(graph_dict, "A") == ["A", "B"]
 
 
 def test_unconnected_graph():
@@ -126,8 +126,8 @@ def test_unconnected_graph():
         "F": ["D", "E"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B", "C"]
-    assert dfs(graph_dict, "A") == ["A", "B", "C"]
+    assert bfs(graph_dict, "A") == ["A", "B", "C"]
+    # assert dfs(graph_dict, "A") == ["A", "B", "C"]
 
 
 def test_direct_graph():
@@ -136,8 +136,8 @@ def test_direct_graph():
         "B": []
     }
 
-    # assert bfs(graph_dict, "B") == ["B"]
-    assert dfs(graph_dict, "B") == ["B"]
+    assert bfs(graph_dict, "B") == ["B"]
+    # assert dfs(graph_dict, "B") == ["B"]
 
 
 def test_loop_graph():
@@ -145,8 +145,8 @@ def test_loop_graph():
         "A": ["A"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A"]
-    assert dfs(graph_dict, "A") == ["A"]
+    assert bfs(graph_dict, "A") == ["A"]
+    # assert dfs(graph_dict, "A") == ["A"]
 
 
 def test_graph_with_many_children():
@@ -168,8 +168,8 @@ def test_graph_with_many_children():
         "Q": ["C"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"]
-    assert dfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"]
+    assert bfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"]
+    # assert dfs(graph_dict, "A") == ["A", "B", "C", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"]
 
 
 def test_start_from_empty_node():
@@ -179,8 +179,8 @@ def test_start_from_empty_node():
     }
 
     # assert bfs(graph_dict, "C") == ["A", "B", "C"] # -> Red
-    # assert bfs(graph_dict, "C") == [] # -> Green
-    assert dfs(graph_dict, "C") == [] # -> Green
+    assert bfs(graph_dict, "C") == [] # -> Green
+    # assert dfs(graph_dict, "C") == [] # -> Green
 
 
 def test_graph_with_duplicate_edges():
@@ -189,8 +189,8 @@ def test_graph_with_duplicate_edges():
         "B": ["A"]
     }
 
-    # assert bfs(graph_dict, "A") == ["A", "B"]
-    assert dfs(graph_dict, "A") == ["A", "B"]
+    assert bfs(graph_dict, "A") == ["A", "B"]
+    # assert dfs(graph_dict, "A") == ["A", "B"]
 
 
 def test_isolated_vertex():
@@ -199,8 +199,8 @@ def test_isolated_vertex():
         "B": []
     }
 
-    # assert bfs(graph_dict, "A") == ["A"]
-    assert dfs(graph_dict, "A") == ["A"]
+    assert bfs(graph_dict, "A") == ["A"]
+    # assert dfs(graph_dict, "A") == ["A"]
 
 
 if __name__ == '__main__':
