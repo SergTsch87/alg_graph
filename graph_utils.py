@@ -59,3 +59,8 @@ def bfs_with_parents(graph_dict, start_vertex):
                     parents[nei] = current_vertex
 
     return visited_nodes, parents
+
+
+# target vs goal
+def build_path(parents, target):
+    pass
