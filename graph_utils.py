@@ -63,4 +63,11 @@ def bfs_with_parents(graph_dict, start_vertex):
 
 # target vs goal
 def build_path(parents, target):
-    pass
+    if target not in parents:
+        return []
+    
+    path = []
+    if len(parents) == 1:
+        path.append(target)
+    
+    return path
