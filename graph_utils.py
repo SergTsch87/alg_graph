@@ -56,5 +56,6 @@ def bfs_with_parents(graph_dict, start_vertex):
                 if nei not in visited_nodes:
                     queue_fifo.append(nei) # А чи можна у цій частині тимчасово зробити list(queue_fifo) ? - бо до списку додається швидше, аніж до черги
                     visited_nodes.append(nei)
+                    parents[nei] = current_vertex
 
     return visited_nodes, parents
