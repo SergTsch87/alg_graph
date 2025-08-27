@@ -67,7 +67,21 @@ def build_path(parents, target):
         return []
     
     path = []
-    if len(parents) == 1:
-        path.append(target)
     
+    reversed_parents = dict(reversed(parents.items()))
+    # print(f'reversed_parents = {reversed_parents}')
+    val_tmp = ""
+
+    for key, val in reversed_parents.items():
+        if ( key == target ) or ( key == val_tmp ):
+            path.append(key)
+            # print(f'key = {key}: path = {path}')
+            if val is None:
+                break
+            val_tmp = val
+
+    # print(f'"path" after for loop == {path}')
+    
+    path.reverse()
+    # print(f'"path" after used "reverse()" == {path}')
     return path

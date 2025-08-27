@@ -8,7 +8,7 @@ import tests.test_graph_utils
 import sys
 from collections import deque
 import time
-from graph_utils import dfs
+from graph_utils import build_path#, dfs
 
 # -----------------------------------------------------------------------------
 # GLOBALS
@@ -56,6 +56,14 @@ def change_iterable(iter_obj, change_method):
 
 def main():
 
+    parents = {
+        "A": None,
+        "B": "A"
+    }
+    target = "B"
+    path = build_path(parents, target)
+    print(f'"path" after build_path() == {path}')
+
     # graph_dict = {
     #     "A": ["B"],
     #     "B": ["A"]
@@ -68,28 +76,28 @@ def main():
         "D": ["C"]
     }
 
-    visited_nodes = dfs(graph_dict, "A")
-    print(f'visited_nodes == {visited_nodes}')
+    # visited_nodes = dfs(graph_dict, "A")
+    # print(f'visited_nodes == {visited_nodes}')
 
-    list_of_graph_dicts = [
-        {"A": []},
-        {"A": ["B"],"B": ["A"]},
-        {"A": ["B"],"B": ["C"],"C": ["A"]},
-        {"A": ["B", "C"],"B": ["A"],"C": ["A"]},
-        {"A": ["B", "C"],"B": ["A"],"C": ["A", "D", "E", "F"],"D": ["C"],"E": ["C"],"F": ["C"]},
-        {"A": ["B", "C", "D", "E", "F"],"B": ["A", "C", "D", "E", "F"],"C": ["A", "B", "D", "E", "F"],"D": ["A", "B", "C", "E", "F"],"E": ["A", "B", "C", "D", "F"],"F": ["A", "B", "C", "D", "E"]},
-        {},
-        {"A": ["B", "C"],"B": ["C", "A"],"C": ["A", "B"]},
-        {"A": ["B", "C", "D"],"B": ["A"],"C": ["A"],"D": ["A"]},
-        {"A": ["B"],"B": ["A"],"C": []},
-        {"A": ["B", "C"],"B": ["A", "C"],"C": ["A", "B"],"D": ["E", "F"],"E": ["D", "F"],"F": ["D", "E"]},
-        {"A": ["B"],"B": []},
-        {"A": ["A"]},
-        {"A": ["B", "C"],"B": ["A"],"C": ["A", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"],"D": ["C"],"E": ["C"],"F": ["C"],"G": ["C"],"H": ["C"],"K": ["C"],"L": ["C"],"M": ["C"],"N": ["C"],"O": ["C"],"P": ["C"],"Q": ["C"]},
-        {"A": ["B"],"B": ["A"]},
-        {"A": ["B", "B"],"B": ["A"]},
-        {"A": [],"B": []}
-    ]
+    # list_of_graph_dicts = [
+    #     {"A": []},
+    #     {"A": ["B"],"B": ["A"]},
+    #     {"A": ["B"],"B": ["C"],"C": ["A"]},
+    #     {"A": ["B", "C"],"B": ["A"],"C": ["A"]},
+    #     {"A": ["B", "C"],"B": ["A"],"C": ["A", "D", "E", "F"],"D": ["C"],"E": ["C"],"F": ["C"]},
+    #     {"A": ["B", "C", "D", "E", "F"],"B": ["A", "C", "D", "E", "F"],"C": ["A", "B", "D", "E", "F"],"D": ["A", "B", "C", "E", "F"],"E": ["A", "B", "C", "D", "F"],"F": ["A", "B", "C", "D", "E"]},
+    #     {},
+    #     {"A": ["B", "C"],"B": ["C", "A"],"C": ["A", "B"]},
+    #     {"A": ["B", "C", "D"],"B": ["A"],"C": ["A"],"D": ["A"]},
+    #     {"A": ["B"],"B": ["A"],"C": []},
+    #     {"A": ["B", "C"],"B": ["A", "C"],"C": ["A", "B"],"D": ["E", "F"],"E": ["D", "F"],"F": ["D", "E"]},
+    #     {"A": ["B"],"B": []},
+    #     {"A": ["A"]},
+    #     {"A": ["B", "C"],"B": ["A"],"C": ["A", "D", "E", "F", "G", "H", "K", "L", "M", "N", "O", "P", "Q"],"D": ["C"],"E": ["C"],"F": ["C"],"G": ["C"],"H": ["C"],"K": ["C"],"L": ["C"],"M": ["C"],"N": ["C"],"O": ["C"],"P": ["C"],"Q": ["C"]},
+    #     {"A": ["B"],"B": ["A"]},
+    #     {"A": ["B", "B"],"B": ["A"]},
+    #     {"A": [],"B": []}
+    # ]
 
     # len_for_iter_objs = 100000
     # list_1 = [i for i in range(len_for_iter_objs)]
