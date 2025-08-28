@@ -84,3 +84,8 @@ def test_parents_path_reconstruction_when_target_is_child_of_root():
     }
 
     assert build_path(parents, "B") == ["A", "B"]
+
+
+def test_parents_no_parents_at_all():
+    parents = {}
+    assert build_path(parents, "X") == []
