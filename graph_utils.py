@@ -53,10 +53,25 @@ def bfs_with_parents(graph_dict, start_vertex):
         if graph_dict[current_vertex] != []: # to check a directed graph
             neighbors_list = graph_dict.get(current_vertex, [])  # graph_dict{ current_vertex: neighbors_list }
             for nei in neighbors_list:
+                
+                # if nei not in parents:
+                #     parents[nei] = []
+                # parents[nei].append(current_vertex)
+                
                 if nei not in visited_nodes:
                     queue_fifo.append(nei) # А чи можна у цій частині тимчасово зробити list(queue_fifo) ? - бо до списку додається швидше, аніж до черги
                     visited_nodes.append(nei)
-                    parents[nei] = current_vertex
+                    
+                    # parents[nei] = current_vertex
+                    
+                    # if nei not in parents:
+                    #     parents[nei] = []
+                    # parents[nei].append(current_vertex)
+
+                else:
+                    if nei not in parents:
+                        parents[nei] = []
+                    parents[nei].append(current_vertex)
 
     return visited_nodes, parents
 

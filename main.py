@@ -8,7 +8,7 @@ import tests.test_graph_utils
 import sys
 from collections import deque
 import time
-from graph_utils import build_path#, dfs
+from graph_utils import build_path, bfs_with_parents#, dfs
 
 # -----------------------------------------------------------------------------
 # GLOBALS
@@ -56,25 +56,39 @@ def change_iterable(iter_obj, change_method):
 
 def main():
 
-    parents = {
-        "A": None,
-        "B": "A"
-    }
-    target = "B"
-    path = build_path(parents, target)
-    print(f'"path" after build_path() == {path}')
+    # parents = {
+    #     "A": None,
+    #     "B": "A"
+    # }
+    # target = "B"
+    # path = build_path(parents, target)
+    # print(f'"path" after build_path() == {path}')
+
+    # # graph_dict = {
+    # #     "A": ["B"],
+    # #     "B": ["A"]
+    # # }
 
     # graph_dict = {
-    #     "A": ["B"],
-    #     "B": ["A"]
+    #     "A": ["B", "C"],
+    #     "B": ["A"],
+    #     "C": ["A", "D"],
+    #     "D": ["C"]
     # }
-
     graph_dict = {
-        "A": ["B", "C"],
-        "B": ["A"],
-        "C": ["A", "D"],
-        "D": ["C"]
+        "1": ["2", "3"],
+        "2": ["1", "4", "5"],
+        "3": ["1", "5", "6"],
+        "4": ["2", "7"],
+        "5": ["2", "3", "7"],
+        "6": ["3", "7"],
+        "7": ["4", "5", "6"]
     }
+    start_vertex = "1"
+
+    visited_nodes, parents = bfs_with_parents(graph_dict, start_vertex)
+    print(f'visited_nodes == {visited_nodes}')
+    print(f'parents == {parents}')
 
     # visited_nodes = dfs(graph_dict, "A")
     # print(f'visited_nodes == {visited_nodes}')
