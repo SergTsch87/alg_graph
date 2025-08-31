@@ -107,4 +107,12 @@ def build_path(parents, target):
 
 
 def build_few_paths(parents, target):
-    pass
+    if target not in parents:
+        return []
+    
+    path = []
+    
+    for key, val in parents.items():
+        path.append(key)
+
+    return [path]
