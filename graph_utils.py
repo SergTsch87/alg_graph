@@ -46,32 +46,55 @@ def bfs_with_parents(graph_dict, start_vertex):
     
     queue_fifo = deque([start_vertex])
     visited_nodes = [start_vertex]
-    parents = {start_vertex: None}
+    parents = {start_vertex: [None]}
 
     while queue_fifo:
         current_vertex = queue_fifo.popleft() # fst
         if graph_dict[current_vertex] != []: # to check a directed graph
             neighbors_list = graph_dict.get(current_vertex, [])  # graph_dict{ current_vertex: neighbors_list }
+            print('\nInput for nei:')
+            print(f'! current_vertex: {current_vertex}')
+            print(f'neighbors_list: {neighbors_list}')
             for nei in neighbors_list:
+                print(f'nei: {nei}')
+                print(f'parents: {parents}')
+                print(f'visited_nodes: {visited_nodes}')
                 
-                # if nei not in parents:
-                #     parents[nei] = []
-                # parents[nei].append(current_vertex)
+                if nei not in parents:
+                    parents[nei] = []
+                # print(f'parents[{nei}]: {parents[nei]}')
+                # # if nei in visited_nodes:
+                
+                # if ( current_vertex not in parents[nei]) and ( nei not in visited_nodes ):
+                
+                # if nei not in visited_nodes: # для додавання першого вузла до parents[nei]
+                if ( nei not in visited_nodes ) or ( nei in queue_fifo ):
+                # if ( current_vertex not in parents[nei] ): # для додавання всіх(!) вузлів до parents[nei]
+                # if ( nei in queue_fifo ): # для додавання правильних значень до parents, але тільки тих, які займають 2-ге та наступні місця у списку
+                    parents[nei].append(current_vertex)
+                    print(f'parents[{nei}]: {parents[nei]}')
+                
+                # parents[current_vertex].append(nei)
                 
                 if nei not in visited_nodes:
                     queue_fifo.append(nei) # А чи можна у цій частині тимчасово зробити list(queue_fifo) ? - бо до списку додається швидше, аніж до черги
                     visited_nodes.append(nei)
                     
-                    # parents[nei] = current_vertex
+                    # # parents[nei] = current_vertex
+                    # print(f'parents[{nei}]: {parents[nei]}')
+                    # parents[nei].append(current_vertex)
+                    # print(f'parents[{nei}]: {parents[nei]}')
                     
+
                     # if nei not in parents:
                     #     parents[nei] = []
                     # parents[nei].append(current_vertex)
 
-                else:
-                    if nei not in parents:
-                        parents[nei] = []
-                    parents[nei].append(current_vertex)
+                # else:
+                #     if nei not in parents:
+                #         parents[nei] = []
+                #     parents[nei].append(current_vertex)
+            print('Output for nei\n')
 
     return visited_nodes, parents
 
