@@ -79,94 +79,78 @@ def bfs_with_parents(graph_dict, start_vertex):
     return visited_nodes, parents
 
 
-# target vs goal
-# Побудова одного шляху для parents, значеннями ключів якого є окремі числа, а не списки
-def build_path(parents, target):
-    if target not in parents:
-        return []
-    
-    path = []
-    
-    reversed_parents = dict(reversed(parents.items()))
-    # print(f'reversed_parents = {reversed_parents}')
-    val_tmp = ""
-
-    for key, val in reversed_parents.items():
-        if ( key == target ) or ( key == val_tmp ):
-            path.append(key)
-            # print(f'key = {key}: path = {path}')
-            if val is None:
-                break
-            val_tmp = val
-
-    # print(f'"path" after for loop == {path}')
-    
-    path.reverse()
-    # print(f'"path" after used "reverse()" == {path}')
-    return path
-
-
-def build_few_paths(parents, target):
-    if target not in parents:
-        return []
-    
-    paths_list = []
-    stack = [[target]] # працюємо зі стеком шляхів
-    
-    while stack:
-        path = stack.pop()
-        last = path[-1]
-
-        # коли дійшли до кореня
-        if ( parents[last] == [None] ) or ( parents[last] is None ):
-            paths_list.append(path)
-        else:
-            for p in parents[last]:
-                stack.append(path + [p])
-
-    # розгортаємо, бо будували у напрямку target -> root
-    return [list(reversed(p)) for p in paths_list]
-
-
-# def build_few_paths(parents, target):
+# # target vs goal
+# # Побудова одного шляху для parents, значеннями ключів якого є окремі числа, а не списки
+# def build_path(parents, target):
 #     if target not in parents:
 #         return []
     
 #     path = []
     
 #     reversed_parents = dict(reversed(parents.items()))
+#     # print(f'reversed_parents = {reversed_parents}')
 #     val_tmp = ""
+
+#     for key, val in reversed_parents.items():
+#         if ( key == target ) or ( key == val_tmp ):
+#             path.append(key)
+#             # print(f'key = {key}: path = {path}')
+#             if val is None:
+#                 break
+#             val_tmp = val
+
+#     # print(f'"path" after for loop == {path}')
     
-#     if len(reversed_parents) == 1:
-#         print('In "if len(reversed_parents) == 1:"')
-#         path = [target]
-#         return [path]
-        
-#     first_iter = True
-
-#     for node in reversed_parents[target]: # [B, C]
-#         # val_tmp = node # За цього рядка, не додавався останній елемент до списку path
-#         path = [target]
-
-#         for key, val in reversed_parents.items():
-            
-#             # for val_el in val:
-#             # if ( key == target ) or ( key == val_tmp ):
-            
-#             val_tmp = key # А за цього рядка двічі(!) додається останній елемент до списку path
-
-#             if key == val_tmp:
-#                 path.append(key)
-#                 if val is None:  # Нащо писати if reversed_parents[key] is None: замість val ?..
-#                     break
-                
-#                 if first_iter:
-#                     val_tmp = node # перша ітерація
-#                     first_iter = False
-#                 else:
-#                     val_tmp = val[0] # наступні ітерації
 #     path.reverse()
-#     return [path]
+#     # print(f'"path" after used "reverse()" == {path}')
+#     return path
+
+
+# def build_few_paths(parents, target):
+#     if target not in parents:
+#         return []
+    
+#     paths_list = []
+#     stack = [[target]] # працюємо зі стеком шляхів
+    
+#     while stack:
+#         path = stack.pop()
+#         last = path[-1]
+
+#         # коли дійшли до кореня
+#         if ( parents[last] == [None] ) or ( parents[last] is None ):
+#             paths_list.append(path)
+#         else:
+#             for p in parents[last]:
+#                 stack.append(path + [p])
+
+#     # розгортаємо, бо будували у напрямку target -> root
+#     return [list(reversed(p)) for p in paths_list]
+
+
+def build_few_paths(parents, target):
+    if target not in parents:
+        return []
+    
+    reversed_parents = dict(reversed(parents.items()))
+    paths_list = []
+
+    for node in reversed_parents[target]: # [B, C]
+        path = [target]
+        val_tmp = node # стартуємо з поточного "кандидата" батька
+
+        for key, val in reversed_parents.items():
+            if key == val_tmp:
+                path.append(key)
+                if ( val is None ) or ( val == [None] ):
+                    break
+                
+                val_tmp = val[0] # беремо першого (поки що)
+
+        path.reverse()
+        paths_list.append(path)
+    
+    return paths_list
 
 
     # parents = {

@@ -3,13 +3,13 @@ from graph_utils import build_few_paths
 
 
 def test_single_node():
-    parents = {"A": None}
+    parents = {"A": [None]}
     assert build_few_paths(parents, "A") == [["A"]]
 
 
 def test_single_chain():
     parents = {
-        "A": None,
+        "A": [None],
         "B": ["A"],
         "C": ["B"]
     }
@@ -19,7 +19,7 @@ def test_single_chain():
 
 def test_two_parents_simple():
     parents = {
-        "A": None,
+        "A": [None],
         "B": ["A"],
         "C": ["A"],
         "D": ["B", "C"]
