@@ -8,7 +8,7 @@ import tests.test_graph_utils
 import sys
 from collections import deque
 import time
-from graph_utils import build_path, bfs_with_parents#, dfs
+from graph_utils import build_path, bfs_with_parents, build_few_paths#, dfs
 
 # -----------------------------------------------------------------------------
 # GLOBALS
@@ -75,20 +75,29 @@ def main():
     #     "C": ["A", "D"],
     #     "D": ["C"]
     # }
-    graph_dict = {
-        "1": ["2", "3"],
-        "2": ["1", "4", "5"],
-        "3": ["1", "5", "6"],
-        "4": ["2", "7"],
-        "5": ["2", "3", "7"],
-        "6": ["3", "7"],
-        "7": ["4", "5", "6"]
-    }
-    start_vertex = "1"
 
-    visited_nodes, parents = bfs_with_parents(graph_dict, start_vertex)
-    print(f'visited_nodes == {visited_nodes}')
-    print(f'parents == {parents}')
+    # graph_dict = {
+    #     "1": ["2", "3"],
+    #     "2": ["1", "4", "5"],
+    #     "3": ["1", "5", "6"],
+    #     "4": ["2", "7"],
+    #     "5": ["2", "3", "7"],
+    #     "6": ["3", "7"],
+    #     "7": ["4", "5", "6"]
+    # }
+    # start_vertex = "1"
+
+    graph_dict = {"A": None}
+    start_vertex = "A"
+
+    # visited_nodes, parents = bfs_with_parents(graph_dict, start_vertex)
+    # print(f'visited_nodes == {visited_nodes}')
+    # print(f'parents == {parents}')
+
+    parents = {"A": None}
+    target = "A"
+    path_list = build_few_paths(parents, target)
+    print(f'path_list == {path_list}')
 
     # visited_nodes = dfs(graph_dict, "A")
     # print(f'visited_nodes == {visited_nodes}')

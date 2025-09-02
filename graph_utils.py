@@ -110,9 +110,83 @@ def build_few_paths(parents, target):
     if target not in parents:
         return []
     
-    path = []
+    paths_list = []
+    stack = [[target]] # працюємо зі стеком шляхів
     
-    for key, val in parents.items():
-        path.append(key)
+    while stack:
+        path = stack.pop()
+        last = path[-1]
 
-    return [path]
+        # коли дійшли до кореня
+        if ( parents[last] == [None] ) or ( parents[last] is None ):
+            paths_list.append(path)
+        else:
+            for p in parents[last]:
+                stack.append(path + [p])
+
+    # розгортаємо, бо будували у напрямку target -> root
+    return [list(reversed(p)) for p in paths_list]
+
+
+# def build_few_paths(parents, target):
+#     if target not in parents:
+#         return []
+    
+#     path = []
+    
+#     reversed_parents = dict(reversed(parents.items()))
+#     val_tmp = ""
+    
+#     if len(reversed_parents) == 1:
+#         print('In "if len(reversed_parents) == 1:"')
+#         path = [target]
+#         return [path]
+        
+#     first_iter = True
+
+#     for node in reversed_parents[target]: # [B, C]
+#         # val_tmp = node # За цього рядка, не додавався останній елемент до списку path
+#         path = [target]
+
+#         for key, val in reversed_parents.items():
+            
+#             # for val_el in val:
+#             # if ( key == target ) or ( key == val_tmp ):
+            
+#             val_tmp = key # А за цього рядка двічі(!) додається останній елемент до списку path
+
+#             if key == val_tmp:
+#                 path.append(key)
+#                 if val is None:  # Нащо писати if reversed_parents[key] is None: замість val ?..
+#                     break
+                
+#                 if first_iter:
+#                     val_tmp = node # перша ітерація
+#                     first_iter = False
+#                 else:
+#                     val_tmp = val[0] # наступні ітерації
+#     path.reverse()
+#     return [path]
+
+
+    # parents = {
+    #     "A": None,
+    #     "B": ["A"],
+    #     "C": ["B"]
+    # }
+
+    # >> [["A", "B", "C"]]
+
+
+    # parents = {
+    #     "A": None,
+    #     "B": ["A"],
+    #     "C": ["A"],
+    #     "D": ["B", "C"]
+    # }
+
+    # result = build_few_paths(parents, "D")
+    # assert sorted(result) == sorted([
+    #     [["A", "B", "D"]],
+    #     [["A", "C", "D"]]
+    # ])

@@ -27,6 +27,6 @@ def test_two_parents_simple():
 
     result = build_few_paths(parents, "D")
     assert sorted(result) == sorted([
-        [["A", "B", "D"]],
-        [["A", "C", "D"]]
+        ["A", "B", "D"],
+        ["A", "C", "D"]
     ])
