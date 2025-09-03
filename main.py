@@ -8,7 +8,7 @@ import tests.test_graph_utils
 import sys
 from collections import deque
 import time
-from graph_utils import build_path, bfs_with_parents, build_few_paths#, dfs
+from graph_utils import build_few_paths#, dfs, build_path, bfs_with_parents
 
 # -----------------------------------------------------------------------------
 # GLOBALS
@@ -87,15 +87,23 @@ def main():
     # }
     # start_vertex = "1"
 
-    graph_dict = {"A": None}
-    start_vertex = "A"
+    # graph_dict = {"A": None}
+    # start_vertex = "A"
 
     # visited_nodes, parents = bfs_with_parents(graph_dict, start_vertex)
     # print(f'visited_nodes == {visited_nodes}')
     # print(f'parents == {parents}')
 
-    parents = {"A": None}
-    target = "A"
+    parents = {
+        "A": [None],
+        "B": ["A"],
+        "C": ["A"],
+        "D": ["B", "C"]
+    }
+    target = "D"
+
+    # parents = {"A": None}
+    # target = "A"
     path_list = build_few_paths(parents, target)
     print(f'path_list == {path_list}')
 

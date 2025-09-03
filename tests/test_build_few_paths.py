@@ -30,3 +30,19 @@ def test_two_parents_simple():
         ["A", "B", "D"],
         ["A", "C", "D"]
     ])
+
+
+def test_branching_deeper():
+    parents = {
+        "S": [None],
+        "A": ["S"],
+        "B": ["S"],
+        "C": ["A", "B"],
+        "D": ["C"]
+    }
+
+    result = build_few_paths(parents, "D")
+    assert sorted(result) == sorted([
+        ["S", "A", "C", "D"],
+        ["S", "B", "C", "D"]
+    ])
