@@ -74,3 +74,21 @@ def test_multiple_roots():
         ["A", "C"],
         ["B", "C"]
     ])
+
+
+def test_complex_case__multiple_paths():
+    parents = {
+        "A": [None],
+        "B": ["A"],
+        "C": ["A"],
+        "D": ["B", "C"],
+        "E": ["B", "C", "D"]
+    }
+
+    result = build_few_paths(parents, "E")
+    assert sorted(result) == sorted([
+        ["A", "B", "E"],
+        ["A", "C", "E"],
+        ["A", "B", "D", "E"],
+        ["A", "C", "D", "E"]
+    ])
