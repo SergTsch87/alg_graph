@@ -1,15 +1,13 @@
 from collections import deque
-# from main import timer
 
 
 # bfs with deque module
-def bfs(graph_dict, start_vertex):#, parents):
+def bfs(graph_dict, start_vertex):
     if start_vertex not in graph_dict:
-        return []#, []
+        return []
     
     queue_fifo = deque([start_vertex])
     visited_nodes = [start_vertex]
-    # parents = []
 
     while queue_fifo:
         current_vertex = queue_fifo.popleft() # fst
@@ -20,7 +18,7 @@ def bfs(graph_dict, start_vertex):#, parents):
                     queue_fifo.append(nei) # А чи можна у цій частині тимчасово зробити list(queue_fifo) ? - бо до списку додається швидше, аніж до черги
                     visited_nodes.append(nei)
 
-    return visited_nodes#, parents
+    return visited_nodes
 
 
 def dfs(graph_dict, start_vertex):
@@ -52,29 +50,18 @@ def bfs_with_parents(graph_dict, start_vertex):
         current_vertex = queue_fifo.popleft() # fst
         if graph_dict[current_vertex] != []: # to check a directed graph
             neighbors_list = graph_dict.get(current_vertex, [])  # graph_dict{ current_vertex: neighbors_list }
-            # print('\nInput for nei:')
-            # print(f'! current_vertex: {current_vertex}')
-            # print(f'neighbors_list: {neighbors_list}')
             for nei in neighbors_list:
-                # print(f'nei: {nei}')
-                # print(f'parents: {parents}')
-                # print(f'visited_nodes: {visited_nodes}')
-                
                 if nei not in parents:
-                    parents[nei] = []
-                
+                    parents[nei] = []                
                 # if ( current_vertex not in parents[nei] ): # для додавання всіх(!) вузлів до parents[nei]
                 # if ( nei not in visited_nodes ): # для додавання першого вузла до parents[nei]
                 # if ( nei in queue_fifo ): # для додавання правильних значень до parents, але тільки тих, які займають 2-ге та наступні місця у списку
                 if ( nei not in visited_nodes ) or ( nei in queue_fifo ):
                     parents[nei].append(current_vertex)
-                    # print(f'parents[{nei}]: {parents[nei]}')
                 
                 if nei not in visited_nodes:
                     queue_fifo.append(nei) # А чи можна у цій частині тимчасово зробити list(queue_fifo) ? - бо до списку додається швидше, аніж до черги
                     visited_nodes.append(nei)
-                
-            # print('Output for nei\n')
 
     return visited_nodes, parents
 
@@ -106,49 +93,30 @@ def bfs_with_parents(graph_dict, start_vertex):
 #     return path
 
 
+# with stack
 def build_few_paths(parents, target):
     if target not in parents:
         return []
     
     paths_list = []
     stack = [[target]] # працюємо зі стеком шляхів
-    # print('Before While loop')
-    # print(f'target == {target}')
-    # print(f'stack == {stack}')
+
     while stack:
-        # print('While loop Begin...')
-        # print(f'stack before pop == {stack}')
         path = stack.pop()
         last = path[-1]
-        # print(f'path == {path}')
-        # print(f'stack after pop == {stack}')
-        # print(f'last == {last}')
-        
+
         # коли дійшли до кореня
-        # print(f'parents[{last}] == {parents[last]}')
-        # print('Before if..else')
         if ( parents[last] == [None] ) or ( parents[last] is None ):
-            # print(f'path == {path}')
-            # print(f'paths_list before append path == {paths_list}')
             paths_list.append(path)            
-            # print(f'paths_list after append path == {paths_list}')
         else:
-            # print('Inside else, before for p in ...')
             for p in parents[last]:
-                # print(f'stack == {stack}')
-                # print(f'path == {path}')
-                # print(f'[p] == {[p]}')
                 stack.append(path + [p])
-    # print('After While loop')
-    # print(f'path == {path}')
-    # print(f'stack == {stack}')
-    # print(f'paths_list == {paths_list}')
-    # print(f'return {[list(reversed(p)) for p in paths_list]}')
-    
+
     # розгортаємо, бо будували у напрямку target -> root
     return [list(reversed(p)) for p in paths_list]
 
 
+# without stack
 # def build_few_paths(parents, target):
 #     if target not in parents:
 #         return []
@@ -172,26 +140,3 @@ def build_few_paths(parents, target):
 #         paths_list.append(path)
     
 #     return paths_list
-
-
-    # parents = {
-    #     "A": None,
-    #     "B": ["A"],
-    #     "C": ["B"]
-    # }
-
-    # >> [["A", "B", "C"]]
-
-
-    # parents = {
-    #     "A": None,
-    #     "B": ["A"],
-    #     "C": ["A"],
-    #     "D": ["B", "C"]
-    # }
-
-    # result = build_few_paths(parents, "D")
-    # assert sorted(result) == sorted([
-    #     [["A", "B", "D"]],
-    #     [["A", "C", "D"]]
-    # ])
