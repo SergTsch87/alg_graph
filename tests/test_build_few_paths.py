@@ -55,3 +55,8 @@ def test_disconnected_target():
     }
 
     assert build_few_paths(parents, "B") == []
+
+
+def test_target_not_in_parents():
+    parents = {"A": None}
+    assert build_few_paths(parents, "X") == []
