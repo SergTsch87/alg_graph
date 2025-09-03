@@ -46,3 +46,12 @@ def test_branching_deeper():
         ["S", "A", "C", "D"],
         ["S", "B", "C", "D"]
     ])
+
+
+def test_disconnected_target():
+    parents = {
+        "A": None,
+        "B": []
+    }
+
+    assert build_few_paths(parents, "B") == []
