@@ -60,3 +60,17 @@ def test_disconnected_target():
 def test_target_not_in_parents():
     parents = {"A": None}
     assert build_few_paths(parents, "X") == []
+
+
+def test_multiple_roots():
+    parents = {
+        "A": [None],
+        "B": [None],
+        "C": ["A", "B"]
+    }
+
+    result = build_few_paths(parents, "C")
+    assert sorted(result) == sorted([
+        ["A", "C"],
+        ["B", "C"]
+    ])
