@@ -144,10 +144,9 @@ def build_few_paths(parents, target):
 
 # Dijkstra's algorithm ( for undirected weighted graphs ) with deque module
 def dijkstras_alg(graph_dict, start_vertex): #, distance):
-    pass
-    # if len(graph_dict) == 1:
-    #     distance = 0
-    #     return {start_vertex: distance}
+    if len(graph_dict) == 1:
+        distance = 0
+        return {start_vertex: distance}
     
     # # curr_node = start_vertex
     # distance = [0, 'inf']
