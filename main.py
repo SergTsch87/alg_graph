@@ -56,6 +56,25 @@ def change_iterable(iter_obj, change_method):
 
 def main():
 
+    parents = {
+        "A": [None],
+        "B": ["D"],
+        "C": ["A"],
+        "D": ["A"],
+        "E": ["F"],
+        "F": ["D"],
+        "G": ["C"],
+        "K": ["C"],
+        "L": ["F", "G", "K"]
+    }
+
+    target = "L" # "F"
+
+    # parents = {"A": None}
+    # target = "A"
+    path_list = build_few_paths(parents, target)
+    print(f'path_list == {path_list}')
+
     # parents = {
     #     "A": None,
     #     "B": "A"
@@ -94,18 +113,20 @@ def main():
     # print(f'visited_nodes == {visited_nodes}')
     # print(f'parents == {parents}')
 
-    parents = {
-        "A": [None],
-        "B": ["A"],
-        "C": ["A"],
-        "D": ["B", "C"]
-    }
-    target = "D"
 
-    # parents = {"A": None}
-    # target = "A"
-    path_list = build_few_paths(parents, target)
-    print(f'path_list == {path_list}')
+    # parents = {
+    #     "A": [None],
+    #     "B": ["A"],
+    #     "C": ["A"],
+    #     "D": ["B", "C"]
+    # }
+    # target = "D"
+
+    # # parents = {"A": None}
+    # # target = "A"
+    # path_list = build_few_paths(parents, target)
+    # print(f'path_list == {path_list}')
+
 
     # visited_nodes = dfs(graph_dict, "A")
     # print(f'visited_nodes == {visited_nodes}')
