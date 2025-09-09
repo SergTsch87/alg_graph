@@ -4,11 +4,11 @@
 # -----------------------------------------------------------------------------
 # Imports
 # -----------------------------------------------------------------------------
-import tests.test_graph_utils
+# import tests.test_graph_utils
 import sys
 from collections import deque
 import time
-from graph_utils import build_few_paths#, dfs, build_path, bfs_with_parents
+from graph_utils import dijkstras_alg#, build_few_paths#, dfs, build_path, bfs_with_parents
 
 # -----------------------------------------------------------------------------
 # GLOBALS
@@ -56,24 +56,35 @@ def change_iterable(iter_obj, change_method):
 
 def main():
 
-    parents = {
-        "A": [None],
-        "B": ["D"],
-        "C": ["A"],
-        "D": ["A"],
-        "E": ["F"],
-        "F": ["D"],
-        "G": ["C"],
-        "K": ["C"],
-        "L": ["F", "G", "K"]
-    }
+    dijkstras_alggraph_dict = {
+            'A': {'B': 5},
+            'B': {'A': 5}
+        }
+    
+    path = dijkstras_alg( dijkstras_alggraph_dict, 'A' )
+    print(f'path == {path}')
+    
+    # >>> {'A': 0, 'B': 5}
 
-    target = "L" # "F"
+    # parents = {
+    #     "A": [None],
+    #     "B": ["D"],
+    #     "C": ["A"],
+    #     "D": ["A"],
+    #     "E": ["F"],
+    #     "F": ["D"],
+    #     "G": ["C"],
+    #     "K": ["C"],
+    #     "L": ["F", "G", "K"]
+    # }
 
-    # parents = {"A": None}
-    # target = "A"
-    path_list = build_few_paths(parents, target)
-    print(f'path_list == {path_list}')
+    # target = "L" # "F"
+
+    # # parents = {"A": None}
+    # # target = "A"
+    # path_list = build_few_paths(parents, target)
+    # print(f'path_list == {path_list}')
+
 
     # parents = {
     #     "A": None,
