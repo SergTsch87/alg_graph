@@ -1,4 +1,5 @@
 from collections import deque
+import heapq
 
 
 # bfs with deque module
@@ -142,27 +143,63 @@ def build_few_paths(parents, target):
 #     return paths_list
 
 
+# get dict value by its index
+def get_value_from_dict(my_dict, index):
+    return list( my_dict.values() )[index]
+
+
+# get dict key by its index
+def get_key_from_dict(my_dict, index):
+    return list( my_dict.keys() )[index]
+
+
+# get value from internal dict
+def get_value_from_internal_dict(outer_dict, index_in, index_out):
+    inner_dict = get_value_from_dict(outer_dict, index_out)
+    if not inner_dict:   # if inner_dict not empty
+        return list( inner_dict.values() )[index_in]
+    else:
+        return None
+    
+
+# get key from internal dict
+def get_key_from_internal_dict(outer_dict, index_in, index_out):
+    inner_dict = get_key_from_dict(outer_dict, index_out)
+    if not inner_dict:   # if inner_dict not empty
+        return list( inner_dict.keys() )[index_in]
+    else:
+        return None
+
+
 # Dijkstra's algorithm ( for undirected weighted graphs ) with deque module
 def dijkstras_alg(graph_dict, start_vertex): #, distance):
-    distance = [0] # init + relaxation
+    count_infs = len( list( graph_dict.keys() ) )
+    distance = ['inf' for i in range(count_infs)]
+    distance[0] = 0  # [0] - це тіко якщо ми вибрали перший елемент ('A'). Для 'C', напр., це буде [2]
+
+    heap = []
+
     path = {start_vertex: distance[0]}
     
     if len(graph_dict) == 1:
         return path
     
-    # print(f'graph_dict.values() == {graph_dict.values()}')
-    # print(f'graph_dict.values()[0] == {list( graph_dict.values() )[0]}')
-    in_dict = list( graph_dict.values() )[0]
+    in_dict = list( graph_dict.values() )[0]   # value of key 'A'
+    
+    if not in_dict:   # if in_dict not empty
+        distance.append( float('inf') )
+        path[list( graph_dict.keys() )[1]] = distance[1]
+        return path
+    
     distance.append( list( in_dict.values() )[0] )
-    # print(f'graph_dict.keys() == {list( graph_dict.keys() )}')
-    # print(f'graph_dict.keys()[0] == {list( graph_dict.keys() )[0]}')
     path[list( graph_dict.keys() )[1]] = distance[1]
-    # print(f'path == {path}')
     
     return path
     # Повинно повернути:
     #     {'A': 0, 'B': 5}
     
+
+
     # # curr_node = start_vertex
     # distance = [0, 'inf']
     # path = graph_dict
