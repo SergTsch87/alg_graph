@@ -171,32 +171,57 @@ def get_key_from_internal_dict(outer_dict, index_in, index_out):
         return None
 
 
+
+# Eample:
+# # A --5-- B --2-- C
+#     graph_dict = {
+#             'A': {'B': 5},
+#             'B': {'A': 5, 'C':2},
+#             'C': {'B': 2}
+#         }
+#     result = dijkstras_alg(graph_dict, 'A')
+#     assert result == {'A': 0, 'B': 5, 'C': 7}
+
 # Dijkstra's algorithm ( for undirected weighted graphs ) with deque module
-def dijkstras_alg(graph_dict, start_vertex): #, distance):
+def dijkstras_alg(graph_dict, start_vertex): #, distances):
     count_infs = len( list( graph_dict.keys() ) )
-    distance = ['inf' for i in range(count_infs)]
-    distance[0] = 0  # [0] - це тіко якщо ми вибрали перший елемент ('A'). Для 'C', напр., це буде [2]
-
-    heap = []
-
-    path = {start_vertex: distance[0]}
+    distances = ['inf' for i in range(count_infs)]
+    distances[0] = 0  # [0] - це тіко якщо ми вибрали перший елемент ('A'). Для 'C', напр., це буде [2]
+    curr_vertex = start_vertex
+    heapq = [ (0, curr_vertex) ]
+    path = {curr_vertex: distances[0]}
     
     if len(graph_dict) == 1:
         return path
     
-    in_dict = list( graph_dict.values() )[0]   # value of key 'A'
-    
+    in_dict = get_value_from_dict(graph_dict, 0)   # value of key 'A'
     if not in_dict:   # if in_dict not empty
-        distance.append( float('inf') )
-        path[list( graph_dict.keys() )[1]] = distance[1]
+        distances.append( float('inf') )
+        path[get_key_from_dict(graph_dict, 0)] = distances[1]
         return path
     
-    distance.append( list( in_dict.values() )[0] )
-    path[list( graph_dict.keys() )[1]] = distance[1]
+    counter = 0
+    while heapq:
+        curr_distance = distances[counter]
+        heapq.pop((distances[counter], curr_vertex))
+
+        if curr_distance > distances[curr_vertex]:
+            continue # outdated entry ???
+
+        # Relax of neighbors u of curr_vertex
+        new_distance = curr_distance + weight( curr_vertex, neighbor)
+        if new_distance < distances[neighbor]:
+            # update distances[neighbor]
+            distances[neighbor] = new_distance
+            heapq.push(new_distance, neighbor)
+
+        counter += 1
+
+    # # distances.append( list( in_dict.values() )[0] )
+    # distances.append( get_value_from_dict(in_dict, 0) )
+    # path[get_key_from_dict(graph_dict, 1)] = distances[1]
     
     return path
-    # Повинно повернути:
-    #     {'A': 0, 'B': 5}
     
 
 
